@@ -1,0 +1,42 @@
+<?xml version='1.0'?>
+	<Bookings item="1" status="OK">
+		<Booking item="1">
+			<Id item="1">1</Id>
+			<Title item="1">${title}</Title>
+			<Agenda item="1"></Agenda>
+			<Privacy item="1">Public</Privacy>
+			<Organizer item="1">
+				<FirstName item="1">Demo</FirstName>
+				<LastName item="1"></LastName>
+				<Email item="1"></Email>
+			</Organizer>
+			<Time item="1">
+				<StartTime item="1">${startTime}</StartTime>
+				<StartTimeBuffer item="1">300</StartTimeBuffer>
+				<EndTime item="1">${endTime}</EndTime>
+				<EndTimeBuffer item="1">0</EndTimeBuffer>
+			</Time>
+			<MaximumMeetingExtension item="1">10</MaximumMeetingExtension>
+			<BookingStatus item="1">OK</BookingStatus>
+			<BookingStatusMessage item="1"></BookingStatusMessage>
+			<Webex item="1">
+				<Enabled item="1">False</Enabled>
+				<MeetingNumber item="1"></MeetingNumber>
+				<Password item="1"></Password>
+			</Webex>
+			<Encryption item="1">BestEffort</Encryption>
+			<Role item="1">Master</Role>
+			<Recording item="1">Disabled</Recording>
+			<DialInfo item="1">
+				<Calls item="1">
+					<Call item="1">
+						<Number item="1">${uri}</Number>
+						<Protocol item="1">SIP</Protocol>
+						<CallRate item="1">6000</CallRate>
+						<CallType item="1">Video</CallType>
+					</Call>
+				</Calls>
+				<ConnectMode item="1">OBTP</ConnectMode>
+			</DialInfo>
+		</Booking>
+	</Bookings>
