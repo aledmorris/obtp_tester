@@ -2,7 +2,7 @@
 	<Bookings item="1" status="OK">
 		<Booking item="1">
 			<Id item="1">1</Id>
-			<Title item="1">${title}</Title>
+			<Title item="1">OBTP Example</Title>
 			<Agenda item="1"></Agenda>
 			<Privacy item="1">Public</Privacy>
 			<Organizer item="1">
@@ -11,9 +11,9 @@
 				<Email item="1"></Email>
 			</Organizer>
 			<Time item="1">
-				<StartTime item="1">${startTime}</StartTime>
+				<StartTime item="1">2021-12-16T13:30:00Z</StartTime>
 				<StartTimeBuffer item="1">300</StartTimeBuffer>
-				<EndTime item="1">${endTime}</EndTime>
+				<EndTime item="1">2021-12-16T14:30:00Z</EndTime>
 				<EndTimeBuffer item="1">0</EndTimeBuffer>
 			</Time>
 			<MaximumMeetingExtension item="1">10</MaximumMeetingExtension>
@@ -30,7 +30,7 @@
 			<DialInfo item="1">
 				<Calls item="1">
 					<Call item="1">
-						<Number item="1">${uri}</Number>
+						<Number item="1">test_call@pexappeal.com</Number>
 						<Protocol item="1">SIP</Protocol>
 						<CallRate item="1">6000</CallRate>
 						<CallType item="1">Video</CallType>
