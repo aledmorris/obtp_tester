@@ -9,7 +9,7 @@ from datetime import timedelta
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # set endpoint FQDN or IP address
-ep_url = 'https://14arundel.pexappeal.com:20001/'
+ep_url = 'https://192.168.1.9/'
 # URL for authentication
 session_auth = ep_url+'xmlapi/session/begin'
 # URL for making bookings
@@ -20,13 +20,13 @@ timezone_offset = 10 # hrs
 # Default booking values
 firstname = 'Aled'
 lastname = 'Morris'
-email = 'aled@pexappeal.com'
+email = 'aled@example.com'
 start_buffer = '300' # secs
 end_buffer = '0' # secs
 proto = 'SIP'
 call_rate = '4096'
 call_type = 'Video'
-uri = 'test_call@pexappeal.com'
+uri = 'test_call@example.com'
 
 
 # function
@@ -42,12 +42,12 @@ def display_menu():
     *********************************************          
     """)
 
-def make_booking(booking_title,start_time,duration):
+def make_booking(booking_title,start_time,duration,date):
     
     #calculat the start time, end time, using the duration and timezone
-    current_time = datetime.datetime.utcnow()
+    #current_time = datetime.datetime.utcnow()
 
-    utc_start = current_time.strftime("%Y-%m-%dT") + start_time + ":00Z"
+    utc_start = date + 'T' + start_time + ":00Z"
     utc_start_dtobj = datetime.datetime.strptime(utc_start, '%Y-%m-%dT%H:%M:%SZ')
 
     utc_end_dtobj = utc_start_dtobj + timedelta(minutes=int(duration))
@@ -89,12 +89,13 @@ print("""
 ░░░╚═╝░░░╚══════╝╚═════╝░░░░╚═╝░░░  ░╚════╝░╚═════╝░░░░╚═╝░░░╚═╝░░░░░
 """)
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-print('Welcome to CLI OBTP Tester')
+print('* Welcome to OBTP Tester *')
+print(' Quickly add a single OBTP booking to your endpoint. Each new entry will \n overwrite any previous one.')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print('\nTo begin, enter your endpoint credentials...\n')
 
 # authentication
-print('Authentication...')
+print('Authentication...\n')
 username = input('> Enter Username: ')
 while username == '':
     print('!!! Cannot have a blank username...')
@@ -105,16 +106,16 @@ password = getpass('> Enter Password: ')
 
 
 # Authenticating to get the sesison token
-auth_response = requests.post(session_auth,auth=(username,password),verify=False)
+try:
+    auth_response = requests.post(session_auth,auth=(username,password),verify=False)
 
-if auth_response == '204' or '200':
-    
+  
     # gather the secure ID from cookie
     cookies_dict = auth_response.cookies.get_dict()
     auth_token = cookies_dict['SecureSessionId']
     
-    print('Authenticated ok...')
-
+    print('\nAuthenticated ok...')
+  
         
     looping = True   
     
@@ -129,18 +130,25 @@ if auth_response == '204' or '200':
         
         if choice == str(1):
             # do stuff to add a booking to the endpoint
-            print('\nLet\'s add a booking...')
+            print('\nLet\'s add a booking...\n')
                                    
             # Booking Title
             booking_title = input('> Booking title: ')
             # start time
             current_time = datetime.datetime.utcnow()
-            print(f'[i] Current UTC time is {current_time}')
+            print(f'[i] Current UTC date/time is {current_time}')
+            
+            default_date = current_time.strftime("%Y-%m-%d")
+            
+            date = input(f'\n> Start date YYYY-MM-DD (UTC) [Default = {default_date}]')
+            if date == '':
+                date = default_date
+            
             start_time = input('> Start time HH:MM (UTC): ')
             # end time (calculated)
             duration = input('> Duration (mins): ')                 
             
-            make_booking(booking_title,start_time,duration)
+            make_booking(booking_title,start_time,duration,date)
             
             
             
@@ -152,6 +160,12 @@ if auth_response == '204' or '200':
         else:
             # any other selection
             print(f'\nError! -\'{choice}\' is not a valid option.')
+            
+
+except:
+    print('\n!!! ERROR !!! Authentication has failed...')
+    print(f'\n>>..Authentication failed..Exiting the app....\n\n')            
+
             
       
    

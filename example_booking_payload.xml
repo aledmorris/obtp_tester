@@ -2,12 +2,12 @@
 	<Bookings item="1" status="OK">
 		<Booking item="1">
 			<Id item="1">1</Id>
-			<Title item="1">OBTP Example</Title>
+			<Title item="1">OBTP Example Booking</Title>
 			<Agenda item="1"></Agenda>
 			<Privacy item="1">Public</Privacy>
 			<Organizer item="1">
-				<FirstName item="1">Demo</FirstName>
-				<LastName item="1"></LastName>
+				<FirstName item="1">Sco</FirstName>
+				<LastName item="1">Mo</LastName>
 				<Email item="1"></Email>
 			</Organizer>
 			<Time item="1">
@@ -30,7 +30,7 @@
 			<DialInfo item="1">
 				<Calls item="1">
 					<Call item="1">
-						<Number item="1">test_call@pexappeal.com</Number>
+						<Number item="1">test_call@example.com</Number>
 						<Protocol item="1">SIP</Protocol>
 						<CallRate item="1">6000</CallRate>
 						<CallType item="1">Video</CallType>
