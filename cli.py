@@ -45,7 +45,7 @@ def display_menu():
 def make_booking(booking_title,start_time,duration):
     
     #calculat the start time, end time, using the duration and timezone
-    current_time = datetime.datetime.now()
+    current_time = datetime.datetime.utcnow()
 
     utc_start = current_time.strftime("%Y-%m-%dT") + start_time + ":00Z"
     utc_start_dtobj = datetime.datetime.strptime(utc_start, '%Y-%m-%dT%H:%M:%SZ')
@@ -64,6 +64,11 @@ def make_booking(booking_title,start_time,duration):
 
     # make the booking
     book_response = requests.request("POST",bookings_url,headers=req_headers,data=example_xml,verify=False)
+ 
+    print('\n')
+    print(f'URL: {bookings_url}\n')
+    print(example_xml)
+    print('\n')
 
     # response code
     print(f'\nResponse Code: {book_response.status_code}')
@@ -102,7 +107,7 @@ password = getpass('> Enter Password: ')
 # Authenticating to get the sesison token
 auth_response = requests.post(session_auth,auth=(username,password),verify=False)
 
-if auth_response is '204' or '200':
+if auth_response == '204' or '200':
     
     # gather the secure ID from cookie
     cookies_dict = auth_response.cookies.get_dict()
@@ -129,7 +134,7 @@ if auth_response is '204' or '200':
             # Booking Title
             booking_title = input('> Booking title: ')
             # start time
-            current_time = datetime.datetime.now()
+            current_time = datetime.datetime.utcnow()
             print(f'[i] Current UTC time is {current_time}')
             start_time = input('> Start time HH:MM (UTC): ')
             # end time (calculated)
