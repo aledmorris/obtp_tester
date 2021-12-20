@@ -36,7 +36,7 @@ def display_menu():
     *********************************************
      MENU: Choose an option:
      
-     [1] Add booking to endpoint
+     [1] Add booking to endpoint (overwrites any previous bookings)
      [2] Exit
     
     *********************************************          
