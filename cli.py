@@ -15,8 +15,6 @@ session_auth = ep_url+'xmlapi/session/begin'
 # URL for making bookings
 bookings_url = ep_url+'bookingsputxml'
 
-timezone_offset = 10 # hrs
-
 # Default booking values
 firstname = 'Aled'
 lastname = 'Morris'
